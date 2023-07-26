@@ -10,6 +10,21 @@ class Phonebook extends Component {
     filter: "",
   };
 
+  componentDidMount() {
+    
+    const storedContacts = localStorage.getItem("contacts");
+    if (storedContacts) {
+      this.setState({ contacts: JSON.parse(storedContacts) });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
+
   handleChangeFilter = (event) => {
     this.setState({ filter: event.target.value });
   };
@@ -66,4 +81,5 @@ Phonebook.propTypes = {
   ),
   filter: PropTypes.string,
 };
+
 export default Phonebook;
