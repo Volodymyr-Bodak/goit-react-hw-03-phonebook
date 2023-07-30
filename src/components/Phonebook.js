@@ -4,6 +4,7 @@ import ContactList from "./Contactlist";
 import Filter from "./Filter";
 import PropTypes from "prop-types";
 
+
 class Phonebook extends Component {
   state = {
     contacts: [],
@@ -11,7 +12,6 @@ class Phonebook extends Component {
   };
 
   componentDidMount() {
-    
     const storedContacts = localStorage.getItem("contacts");
     if (storedContacts) {
       this.setState({ contacts: JSON.parse(storedContacts) });
@@ -19,7 +19,6 @@ class Phonebook extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    
     if (prevState.contacts !== this.state.contacts) {
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
@@ -70,7 +69,6 @@ class Phonebook extends Component {
     );
   }
 }
-
 Phonebook.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
